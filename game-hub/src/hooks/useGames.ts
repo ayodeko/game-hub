@@ -5,6 +5,16 @@ export interface Game{
     id: number
     name: string
     background_image: string
+    parent_platforms: PlatformHolder[]
+}
+
+interface PlatformHolder{
+    platform: Platform
+}
+interface Platform{
+    image_background: string
+    name: string
+    slug: string
 }
 interface GetGameResponseBody{
     count: number

@@ -21,7 +21,7 @@ const GameCardSkeleton = () => {
 
     const g: Game = {id:1, name:"", parent_platforms: [], background_image:"", rating:1}
     return (
-        <Card width={'500px'} borderRadius={"md"} overflow={"hidden"}>
+        <Card>
             <Skeleton height={'380px'}></Skeleton>
             <CardBody>
                 <SkeletonText />

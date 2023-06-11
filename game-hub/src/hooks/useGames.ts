@@ -1,5 +1,6 @@
-import {useEffect, useState} from "react";
+import {DependencyList, useEffect, useState} from "react";
 import apiClient from "../services/api-client";
+import {AxiosRequestConfig} from "axios";
 
 export interface Game{
     id: number
@@ -7,6 +8,14 @@ export interface Game{
     rating: number
     background_image: string
     parent_platforms: PlatformHolder[]
+    genres: Genre[]
+}
+interface Genre {
+    id: number
+    name: string
+    slug: string
+    games_count: number
+    image_background: string
 }
 
 interface PlatformHolder{
@@ -22,14 +31,27 @@ interface GetGameResponseBody{
     results: Game[]
 }
 
+export interface GameOutput
+{games:Game[]
+    error: string
+    isLoading: boolean
+    selectedGenre: string | null
+    setSelectedGenre: (input: string) => void
+    setGames: (input: Game[]) => void
+    setError: (input: string) => void
+}
 export default function useGames(){
 
-    const [games, setGames] = useState<Game[]>([])
+    let [games, setGames] = useState<Game[]>([])
     const [error, setError] = useState("")
     const [isLoading, setIsLoading] = useState(true)
+    const [selectedGenre, setSelectedGenre] = useState<string| null>(null)
 
     useEffect(() => {
-        apiClient.get("/games")
+        setIsLoading(true)
+        const abortController = new AbortController()
+        const genreParam = {params: {genres:selectedGenre}}
+        apiClient.get("/games", {signal: abortController.signal,...genreParam } )
             .then(res => {
                 console.log(res.data.results)
                 setGames(res.data.results)
@@ -39,7 +61,13 @@ export default function useGames(){
                 setError(err.message)
                 setIsLoading(false)
             })
-    }, [])
-
-    return {games, error, isLoading, setGames, setError}
+    }, [selectedGenre])
+    let g: GameOutput = {games:games,
+        error: error,
+        isLoading: isLoading,
+        selectedGenre: selectedGenre,
+        setSelectedGenre: setSelectedGenre,
+            setGames: setGames,
+        setError: setError}
+    return g
 }

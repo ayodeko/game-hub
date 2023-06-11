@@ -19,10 +19,11 @@ import PlatformIcons from "./PlatformIcons";
 
 const GameCardSkeleton = () => {
 
-    const g: Game = {id:1, name:"", parent_platforms: [], background_image:"", rating:1}
     return (
         <Card>
-            <Skeleton height={'380px'}></Skeleton>
+            <Skeleton  height={'200px'}>
+                <Box width={'300px'}></Box>
+            </Skeleton>
             <CardBody>
                 <SkeletonText />
             </CardBody>

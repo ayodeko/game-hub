@@ -6,10 +6,12 @@ import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import AsideGrid from "./components/AsideGrid";
 import useGames from "./hooks/useGames";
+import PlatformDropDown from "./components/PlatformDropDown";
 
 function App(){
 
     const gameOutput = useGames()
+    const [selectedPlatform, setSelectedPlatform] = useState('')
     return (
         <Grid templateAreas={{
             base: `"nav" "main"`,
@@ -24,11 +26,12 @@ function App(){
             </GridItem>
             <Show above={"lg"}>
                 <GridItem area={"aside"}>
-                    <AsideGrid selectedGenre={gameOutput.selectedGenre} setSelectedGenre={gameOutput.setSelectedGenre}/>
+                    <AsideGrid selectedGenre={gameOutput.selectedGenre}  setSelectedGenre={gameOutput.setSelectedGenre}/>
                 </GridItem>
             </Show>
             <GridItem area={"main"}>
-                <GameGrid gameOutput={gameOutput}/>
+                <PlatformDropDown selectedPlatform={selectedPlatform} onSelect={setSelectedPlatform}/>
+                <GameGrid selectedPlatform={selectedPlatform} gameOutput={gameOutput}/>
             </GridItem>
         </Grid>
     )

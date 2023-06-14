@@ -21,8 +21,15 @@ interface Genre {
 interface PlatformHolder{
     platform: Platform
 }
+interface ParentPlatform {
+    platform: {
+        id: number
+        name: string
+        slug: string
+    }
+}
 interface Platform{
-    image_background: string
+    id: string
     name: string
     slug: string
 }
@@ -45,7 +52,7 @@ export default function useGames(){
     let [games, setGames] = useState<Game[]>([])
     const [error, setError] = useState("")
     const [isLoading, setIsLoading] = useState(true)
-    const [selectedGenre, setSelectedGenre] = useState<string| null>(null)
+    const [selectedGenre, setSelectedGenre] = useState<string | null>(null)
 
     useEffect(() => {
         setIsLoading(true)

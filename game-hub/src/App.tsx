@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
-import {Button, Grid, GridItem, Show} from "@chakra-ui/react";
+import {Button, Grid, GridItem, HStack, Show} from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import AsideGrid from "./components/AsideGrid";
 import useGames from "./hooks/useGames";
 import PlatformDropDown from "./components/PlatformDropDown";
+import OrderingDropDown from "./components/OrderingDropDown";
 
 function App(){
 
@@ -30,7 +31,10 @@ function App(){
                 </GridItem>
             </Show>
             <GridItem area={"main"}>
+                <HStack spacing={"15px"} padding={"10px"}>
                 <PlatformDropDown selectedPlatform={selectedPlatform} onSelect={setSelectedPlatform}/>
+                <OrderingDropDown order={gameOutput.gameQuery?.ordering} onSelect={(input: string) => {gameOutput.setGameQuery({...gameOutput, ordering: input})}}/>
+                </HStack>
                 <GameGrid selectedPlatform={selectedPlatform} gameOutput={gameOutput}/>
             </GridItem>
         </Grid>

@@ -29,7 +29,6 @@ export function useGenres(){
     },[])
 
     const [selectedGenre, setSelectedGenre] = useState('')
-    console.log(selectedGenre)
 
     return {genres, error, isLoading}
 }

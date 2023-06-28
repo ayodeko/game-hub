@@ -12,7 +12,7 @@ const AsideGrid = ({selectedGenre, setSelectedGenre}: Prop) => {
     return (
         <VStack align={"start"} paddingStart={'10px'}>
             <Heading>Genre</Heading>
-            {isLoading ? <Spinner /> : genres?.map(genre => <GenreComponent genre={genre} selectedGenre={selectedGenre} onSelectedGenre={setSelectedGenre}/>)}
+            {isLoading ? <Spinner /> : genres?.map(genre => <GenreComponent key={genre.slug} genre={genre} selectedGenre={selectedGenre} onSelectedGenre={setSelectedGenre}/>)}
         </VStack>
     )
 }

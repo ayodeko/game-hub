@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Menu, MenuButton, MenuItem, MenuList} from "@chakra-ui/react";
+import {Box, Button, Menu, MenuButton, MenuItem, MenuList} from "@chakra-ui/react";
 import {BsChevronBarDown} from "react-icons/bs";
 import {Platform, usePlatforms} from "../hooks/usePlatforms";
 
@@ -10,6 +10,7 @@ interface Props{
 const PlatformDropDown = ({onSelect, selectedPlatform}: Props) => {
     const {data}= usePlatforms()
     return (
+        <Box>
         <Menu>
             <MenuButton as={Button} rightIcon={<BsChevronBarDown />}>{data.find(x => x.slug === selectedPlatform)?.name || 'Platforms'}</MenuButton>
             <MenuList>
@@ -24,6 +25,7 @@ const PlatformDropDown = ({onSelect, selectedPlatform}: Props) => {
                 })}
             </MenuList>
         </Menu>
+        </Box>
     )
 }
 export default PlatformDropDown

@@ -23,14 +23,13 @@ const GameGrid = ({gameOutput, selectedPlatform}: Prop) => {
         const result =  selectedPlatform == '' ? inputGames : inputGames.filter(game =>
             game.parent_platforms.some(platform => platform.platform.slug === selectedPlatform)
         )
-        console.log(result)
         return result;
     }
     return (
         <>
             <SimpleGrid columns={{sm: 1, md: 2, lg:3}} spacing={5} padding={"10px"}>
-                {gameOutput.isLoading ? fakeGames.map(x => <GameCardContainer><GameCardSkeleton/></GameCardContainer>)
-                    : refineGames(gameOutput.games).map((game) => <GameCardContainer><GameCard game={game}></GameCard></GameCardContainer>)}
+                {gameOutput.isLoading ? fakeGames.map(x => <GameCardContainer key={x}><GameCardSkeleton/></GameCardContainer>)
+                    : refineGames(gameOutput.games).map((game) => <GameCardContainer key={game.id}><GameCard game={game}></GameCard></GameCardContainer>)}
             </SimpleGrid>
         </>
     )

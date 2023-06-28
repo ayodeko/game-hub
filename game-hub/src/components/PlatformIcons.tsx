@@ -22,9 +22,8 @@ const iconMap: { [key: string]: IconType } = {
 const PlatformIcons = ({platforms}: Props) => {
     return (
         <HStack>
-            {platforms.map(platforms => {
-                console.log(platforms)
-                return <Icon color={"gray.500"} as={iconMap[platforms]}/>
+            {platforms.map(platform => {
+                return <Icon key={platform} color={"gray.500"} as={iconMap[platform]}/>
             })}
         </HStack>
     )

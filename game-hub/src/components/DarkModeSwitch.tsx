@@ -8,7 +8,7 @@ function DarkModeSwitch(){
     return(
         <HStack paddingEnd={"10px"}>
             <Switch colorScheme={'green'} isChecked={colorMode === 'dark'} onChange={toggleColorMode}/>
-            <Text color={"red"}>Dark Mode</Text>
+            <Text whiteSpace={"nowrap"}>Dark Mode</Text>
         </HStack>
     )
 }

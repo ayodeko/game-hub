@@ -3,7 +3,8 @@ import apiClient from "../services/api-client";
 import {AxiosRequestConfig} from "axios";
 
 export interface GameQuery{
-    ordering: string
+    ordering?: string | undefined,
+    searchText?: string | undefined
 }
 export const sortArray = [
     {key: "Date Created", value:"created"},
@@ -70,8 +71,8 @@ export default function useGames(){
     useEffect(() => {
         setIsLoading(true)
         const abortController = new AbortController()
-        const genreParam = {params: {genres:selectedGenre, ordering: gameQuery?.ordering}}
-        apiClient.get("/games", {signal: abortController.signal,...genreParam } )
+        const gameParams = {params: {genres:selectedGenre, ordering: gameQuery?.ordering, search: gameQuery?.searchText}}
+        apiClient.get("/games", {signal: abortController.signal,...gameParams } )
             .then(res => {
                 console.log(res.data.results)
                 setGames(res.data.results)

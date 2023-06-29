@@ -4,7 +4,7 @@ import {Genre} from "../hooks/useGenres";
 
 interface GenreProps{
     genre: Genre
-    selectedGenre: string
+    selectedGenre: string | null
     onSelectedGenre: (input: string) => void
 }
 const GenreComponent = ({genre, selectedGenre, onSelectedGenre}: GenreProps) => {

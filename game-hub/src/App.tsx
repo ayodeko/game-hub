@@ -23,7 +23,7 @@ function App(){
             lg: '200px 1fr'
         }}>
             <GridItem area={"nav"}>
-                <NavBar></NavBar>
+                <NavBar onSubmit={(searchText) => gameOutput.setGameQuery({...gameOutput.gameQuery, searchText: searchText})}></NavBar>
             </GridItem>
             <Show above={"lg"}>
                 <GridItem area={"aside"}>
@@ -33,7 +33,7 @@ function App(){
             <GridItem area={"main"}>
                 <HStack spacing={"15px"} padding={"10px"}>
                 <PlatformDropDown selectedPlatform={selectedPlatform} onSelect={setSelectedPlatform}/>
-                <OrderingDropDown order={gameOutput.gameQuery?.ordering} onSelect={(input: string) => {gameOutput.setGameQuery({...gameOutput, ordering: input})}}/>
+                <OrderingDropDown order={gameOutput.gameQuery?.ordering} onSelect={(input) => {gameOutput.setGameQuery({...gameOutput.gameQuery, ordering: input})}}/>
                 </HStack>
                 <GameGrid selectedPlatform={selectedPlatform} gameOutput={gameOutput}/>
             </GridItem>

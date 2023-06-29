@@ -4,7 +4,7 @@ import GenreComponent from "./GenreComponent";
 import {useGenres} from "../hooks/useGenres";
 
 interface Prop {
-    selectedGenre: string
+    selectedGenre: string | null
     setSelectedGenre: (input: string) => void
 }
 const AsideGrid = ({selectedGenre, setSelectedGenre}: Prop) => {
